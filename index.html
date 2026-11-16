@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>BFL Connect</title>
+<style>
+/* Layout: dark fan-site, hero + side cards, live match centre, table, clubs, community. Single dark look by design. */
+:root{--bg:#07130f;--panel:#101f19;--panel2:#142820;--line:#263a31;--green:#0c6b45;--lime:#b8ef72;--red:#e43b45;--cream:#f3f1e8;--muted:#9aaca2;--gold:#e6c477;color-scheme:dark}
+*{box-sizing:border-box}html{background:var(--bg)}body{margin:0;background:var(--bg);color:var(--cream);font-family:Inter,Arial,sans-serif}a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}.wrap{max-width:1240px;margin:auto;padding-left:max(28px,env(safe-area-inset-left,0px));padding-right:max(28px,env(safe-area-inset-right,0px))}
+.top{border-bottom:1px solid var(--line);background:#091711}.topin{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:-1px;font-size:23px}.mark{width:40px;height:40px;border:2px solid var(--lime);display:grid;place-items:center;color:var(--lime);font-weight:900;clip-path:polygon(15% 0,85% 0,100% 20%,90% 82%,50% 100%,10% 82%,0 20%)}.brand small{display:block;font-size:9px;letter-spacing:2px;color:var(--muted);font-weight:700;margin-top:2px}.nav{display:flex;gap:27px;color:#c5d0c9;font-size:13px;font-weight:700}.nav a:hover{color:var(--lime)}.right{display:flex;align-items:center;gap:12px}.search{background:#14251d;border:1px solid var(--line);padding:10px 13px;border-radius:7px;color:var(--cream);width:145px}.join{border:0;background:var(--lime);color:#102016;font-weight:900;padding:11px 17px;border-radius:6px}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--lime);outline-offset:2px}
+.hero{padding:34px 0 28px}.eyebrow{color:var(--lime);font-size:11px;font-weight:900;letter-spacing:2px;text-transform:uppercase}.heroGrid{display:grid;grid-template-columns:1.55fr .8fr;gap:18px}.feature{min-height:390px;border-radius:13px;overflow:hidden;position:relative;background-color:#0b2a1d;background-image:linear-gradient(90deg,rgba(3,15,10,.94),rgba(3,15,10,.25)),linear-gradient(0deg,rgba(3,15,10,.8),transparent 70%),url('https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=1500&q=85');background-position:center;background-size:cover}.featureText{position:absolute;left:34px;bottom:32px;max-width:600px}.tag{display:inline-block;background:var(--red);color:white;font-size:10px;font-weight:900;letter-spacing:1.4px;padding:7px 10px;border-radius:3px}.feature h1{font-size:clamp(36px,5vw,62px);line-height:.98;letter-spacing:-2px;margin:15px 0 12px;max-width:620px}.feature p{color:#d2dcd5;line-height:1.55;max-width:520px;font-size:14px}.meta{color:#b4c1b9;font-size:11px;font-weight:700;letter-spacing:.5px}.sideStack{display:grid;grid-template-rows:1fr 1fr;gap:18px}.sideCard{border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:22px;display:flex;flex-direction:column;justify-content:space-between}.sideCard h3{font-size:22px;line-height:1.1;margin:12px 0}.sideCard p{font-size:12px;color:var(--muted);line-height:1.5}.sideCard .arrow{color:var(--lime);font-size:22px}.section{padding:20px 0 34px}.sectionHead{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:16px}.sectionHead h2{font-size:23px;letter-spacing:-.7px;margin:6px 0 0}.view{font-size:12px;color:var(--lime);font-weight:800}
+.live{display:inline-flex;align-items:center;gap:7px}.dot{width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 0 rgba(184,239,114,.6);animation:pulse 2s infinite}.dot.off{background:#71857a;animation:none}@keyframes pulse{70%{box-shadow:0 0 0 8px rgba(184,239,114,0)}100%{box-shadow:0 0 0 0 rgba(184,239,114,0)}}@media(prefers-reduced-motion:reduce){.dot{animation:none}}
+.matchbar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;background:linear-gradient(120deg,#173529,#10231b);border:1px solid #31503e;border-radius:12px;padding:22px 28px;gap:15px;margin-bottom:12px}.team{display:flex;align-items:center;gap:13px;font-weight:900;font-size:15px;min-width:0}.team:last-child{justify-content:flex-end;text-align:right}.crest{flex:none;width:48px;height:48px;border-radius:50%;background:#e9eee6;color:#123322;display:grid;place-items:center;font-size:12px;font-weight:900;border:3px solid rgba(255,255,255,.15)}.crest.red{background:#e9d8d2;color:#a32c32}.score{text-align:center}.score strong{font-size:29px;letter-spacing:2px;font-variant-numeric:tabular-nums}.score small{display:block;color:var(--lime);font-size:10px;letter-spacing:1.5px;font-weight:900;margin-top:5px}.matchFoot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:11px;margin-top:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden;min-width:0}.thumb{height:150px;background-color:#123325;background-image:linear-gradient(135deg,#143d2b,#0c231a);background-size:cover;background-position:center;position:relative}.thumb span{position:absolute;left:12px;top:12px;background:#07130fdb;padding:6px 8px;border-radius:3px;font-size:9px;font-weight:900;letter-spacing:1px;color:var(--lime)}.cardBody{padding:16px}.cardBody h3{font-size:17px;line-height:1.2;margin:8px 0}.cardBody p{color:var(--muted);font-size:12px;line-height:1.5;margin:0}.cardMeta{margin-top:14px;color:#b3c0b8;font-size:10px;font-weight:800}
+.tableWrap{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow-x:auto}.tableTitle{padding:17px 19px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.tableTitle b{font-size:14px}.tableTitle span{font-size:10px;color:var(--muted)}table{width:100%;border-collapse:collapse;font-size:12px;font-variant-numeric:tabular-nums}th{text-align:left;color:var(--muted);font-size:9px;letter-spacing:1px;padding:13px 18px}td{padding:13px 18px;border-top:1px solid #20332a;font-weight:700}td:nth-child(n+3),th:nth-child(n+3){text-align:center}.pos{color:var(--lime);width:30px}.club{display:flex;align-items:center;gap:10px;white-space:nowrap}.mini{width:25px;height:25px;flex:none;border-radius:50%;background:#dce8dc;color:#183323;display:grid;place-items:center;font-size:8px;font-weight:900}.badge{font-size:9px;font-weight:900;padding:3px 6px;border-radius:3px;letter-spacing:1px}.badge.c{background:var(--gold);color:#2a2108}.badge.r{background:#5a1d22;color:#ffb3b8}.pts{color:var(--lime)}
+.news{display:grid;gap:10px}.newsItem{display:flex;justify-content:space-between;gap:16px;align-items:baseline;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:15px 18px}.newsItem:hover{border-color:var(--lime)}.newsItem b{font-size:14px;line-height:1.35}.newsItem small{color:var(--muted);font-size:10px;font-weight:800;letter-spacing:.8px;white-space:nowrap}.empty{color:var(--muted);font-size:13px;padding:16px 0}
+.bottomGrid{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}.fanbox{padding:23px;background:linear-gradient(130deg,#173b2b,#10251b);border:1px solid #31503e;border-radius:12px}.fanbox h2{font-size:27px;line-height:1.05;margin:12px 0}.fanbox p{color:#b8c9bf;font-size:13px;line-height:1.6}.fanbox button{margin-top:10px}.poll{padding:22px;background:var(--panel);border:1px solid var(--line);border-radius:12px}.poll h3{margin:8px 0 16px}.option{display:block;width:100%;padding:12px 13px;background:#172a21;color:var(--cream);border:1px solid #2b4035;border-radius:6px;text-align:left;margin:8px 0;font-size:12px}.option:hover{border-color:var(--lime)}.option.selected{border-color:var(--lime);background:#203b2c}
+footer{margin-top:35px;border-top:1px solid var(--line);padding:25px 0 35px;color:var(--muted);font-size:11px}.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.disclaimer{color:#71857a;margin-top:10px;max-width:700px;line-height:1.5}
+@media(max-width:850px){.nav{display:none}.heroGrid,.bottomGrid{grid-template-columns:1fr}.sideStack{grid-template-columns:1fr 1fr;grid-template-rows:auto}.feature{min-height:360px}.grid3{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}.topin{height:66px}.search{display:none}.join{padding:10px 12px;font-size:11px}.brand{font-size:19px}.hero{padding-top:20px}.feature{min-height:390px}.featureText{left:20px;right:20px;bottom:22px}.feature h1{font-size:39px}.sideStack{grid-template-columns:1fr}.sideCard{min-height:150px}.matchbar{padding:17px 12px;gap:6px}.team{font-size:11px;gap:7px}.crest{width:36px;height:36px;font-size:9px}.score strong{font-size:23px}.grid3{grid-template-columns:1fr}.thumb{height:180px}.sectionHead h2{font-size:20px}th,td{padding:11px 9px}.club{gap:6px}.mini{width:21px;height:21px}.hideMobile{display:none}.newsItem{flex-direction:column;gap:6px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap topin">
+<a class="brand" href="#"><div class="mark">BFL</div><div>BFL CONNECT<small>THE FANS' HOME</small></div></a>
+<nav class="nav"><a href="#matches">MATCH CENTRE</a><a href="#table">LEAGUE TABLE</a><a href="#news">HEADLINES</a><a href="#clubs">CLUBS</a><a href="#fanclub">FAN ZONE</a></nav>
+<div class="right"><input class="search" id="search" placeholder="Search clubs…" aria-label="Search clubs"><button class="join" id="joinTop">JOIN THE COMMUNITY ↗</button></div>
+</div></header>
+<main class="wrap">
+<section class="hero"><div class="eyebrow">BANGLADESHI FOOTBALL. OUR GAME.</div><div class="heroGrid" style="margin-top:13px">
+<article class="feature"><div class="featureText"><span class="tag" id="heroTag">THE SUPPORTER'S GAME</span><h1>THIS IS OUR<br>FOOTBALL.</h1><p>Every club. Every city. Every voice in the stands. Follow the stories, rivalries and moments shaping football in Bangladesh.</p><div class="meta">BFL CONNECT &nbsp;·&nbsp; INDEPENDENT FAN PLATFORM</div></div></article>
+<div class="sideStack">
+<article class="sideCard"><div><div class="eyebrow">MATCHDAY</div><h3>Table and form.<br>Always current.</h3><p>The league table and headlines refresh by themselves, so you never need to reload.</p></div><a class="arrow" href="#table" aria-label="Go to the league table">↗</a></article>
+<article class="sideCard"><div><div class="eyebrow">FAN CULTURE</div><h3>More than<br>90 minutes.</h3><p>Supporter stories, away days, chants, memories and the people behind the badges.</p></div><a class="arrow" href="#stories" aria-label="Go to fan stories">↗</a></article>
+</div></div></section>
+
+<section class="section" id="matches"><div class="sectionHead"><div><div class="eyebrow" id="matchEyebrow">THE LATEST</div><h2 id="matchTitle">Match centre</h2></div><a class="view" href="#table">FULL TABLE ↗</a></div>
+<div id="matchArea"></div></section>
+
+<section class="section" id="table"><div class="sectionHead"><div><div class="eyebrow">THE RACE FOR THE TOP</div><h2>League table</h2></div><span class="view live"><i class="dot off" id="liveDot"></i><span id="liveText">LOADING…</span></span></div>
+<div class="tableWrap"><div class="tableTitle"><b id="tblTitle">Bangladesh Football League</b><span id="tblSub"></span></div><table><thead><tr><th>#</th><th>CLUB</th><th>P</th><th class="hideMobile">W</th><th class="hideMobile">D</th><th class="hideMobile">L</th><th>GD</th><th>PTS</th></tr></thead><tbody id="tbody"></tbody></table></div>
+<p class="empty" id="tblNote"></p></section>
+
+<section class="section" id="news"><div class="sectionHead"><div><div class="eyebrow">AROUND THE LEAGUE</div><h2>Headlines</h2></div><span class="view" id="newsSrc"></span></div>
+<div class="news" id="newsList"></div></section>
+
+<section class="section" id="stories"><div class="sectionHead"><div><div class="eyebrow">FROM THE TERRACES</div><h2>Stories worth sharing</h2></div><a class="view" href="#fanclub">YOUR VOICE MATTERS ↗</a></div>
+<div class="grid3">
+<article class="card"><div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=900&q=80'),linear-gradient(135deg,#143d2b,#0c231a)"><span>SUPPORTER CULTURE</span></div><div class="cardBody"><h3>The sound of a matchday belongs to the fans</h3><p>Football is built in the stands as much as it is on the pitch. Celebrate the people who bring it to life.</p><div class="cardMeta">FAN CULTURE · 4 MIN READ</div></div></article>
+<article class="card"><div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=900&q=80'),linear-gradient(135deg,#143d2b,#0c231a)"><span>THE BIG PICTURE</span></div><div class="cardBody"><h3>Why local rivalries make a league special</h3><p>Neighbourhood pride, history and bragging rights: the stories that make every fixture matter.</p><div class="cardMeta">OPINION · 5 MIN READ</div></div></article>
+<article class="card"><div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=900&q=80'),linear-gradient(135deg,#143d2b,#0c231a)"><span>THE NEXT GENERATION</span></div><div class="cardBody"><h3>Give young players a stage to dream bigger</h3><p>A stronger football culture starts with accessible pitches, local coaching and opportunities.</p><div class="cardMeta">GRASSROOTS · 3 MIN READ</div></div></article>
+</div></section>
+
+<section class="section" id="clubs"><div class="sectionHead"><div><div class="eyebrow">BADGES, CITIES & HISTORY</div><h2>Know your clubs</h2></div><span class="view" id="clubCount"></span></div>
+<div class="grid3" id="clubGrid"></div></section>
+
+<section class="section bottomGrid" id="fanclub"><div class="fanbox"><div class="eyebrow">THIS SPACE IS YOURS</div><h2>Football is better<br>when we're in it together.</h2><p>Share your matchday photos, tell us your club story, debate the big decisions and help build a stronger supporter culture around Bangladeshi football.</p><button class="join" id="joinBtn">BECOME PART OF IT ↗</button><p id="joinMsg" style="font-size:12px;color:var(--lime)" hidden>Sign-up isn't connected yet. Link a form or fan forum to this button to open the community.</p></div>
+<div class="poll"><div class="eyebrow">FAN POLL</div><h3>What's the biggest thing Bangladeshi football needs?</h3><button class="option" data-i="0">Better stadiums & matchday experience</button><button class="option" data-i="1">Stronger youth academies</button><button class="option" data-i="2">Better media coverage</button><button class="option" data-i="3">More competitive clubs</button><p id="pollMsg" style="color:var(--muted);font-size:10px">Pick one. Your choice stays on this device only.</p></div></section>
+</main>
+<footer><div class="wrap"><div class="foot"><div class="brand"><div class="mark">BFL</div><div>BFL CONNECT<small>THE FANS' HOME</small></div></div><div>ABOUT &nbsp; COMMUNITY &nbsp; CONTACT &nbsp; SOCIALS</div><div>MADE FOR THE LOVE OF THE GAME.</div></div><div class="disclaimer">BFL Connect is an independent, fan-made site and is not affiliated with or endorsed by the Bangladesh Football Federation, the Bangladesh Football League or any club. Standings come from <a id="srcLink" href="https://en.wikipedia.org" style="text-decoration:underline">Wikipedia</a> and headlines from public news feeds. They can lag behind or differ from official results.</div></div></footer>
+<script>
+const SEED={
+  "updated": "2026-11-16T19:00:00Z",
+  "season": "2025–26",
+  "seasonStatus": "final",
+  "statusNote": "The 2025–26 season is complete. The 2026–27 table replaces this one automatically as soon as matches are listed on the source page.",
+  "source": {
+    "name": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/2025%E2%80%9326_Bangladesh_Football_League"
+  },
+  "champions": "Bashundhara Kings",
+  "topScorer": { "name": "Dorielton", "club": "Bashundhara Kings", "goals": 20 },
+  "table": [
+    { "club": "Bashundhara Kings", "p": 18, "w": 12, "d": 5, "l": 1, "gf": 42, "ga": 18, "gd": 24, "pts": 41, "note": "C" },
+    { "club": "Abahani Limited", "p": 18, "w": 11, "d": 4, "l": 3, "gf": 37, "ga": 15, "gd": 22, "pts": 37, "note": "" },
+    { "club": "Fortis FC", "p": 18, "w": 10, "d": 5, "l": 3, "gf": 31, "ga": 13, "gd": 18, "pts": 35, "note": "" },
+    { "club": "Bangladesh Police", "p": 18, "w": 6, "d": 9, "l": 3, "gf": 19, "ga": 15, "gd": 4, "pts": 27, "note": "" },
+    { "club": "Mohammedan SC", "p": 18, "w": 6, "d": 5, "l": 7, "gf": 27, "ga": 20, "gd": 7, "pts": 23, "note": "" },
+    { "club": "Rahmatganj MFS", "p": 18, "w": 6, "d": 5, "l": 7, "gf": 21, "ga": 25, "gd": -4, "pts": 23, "note": "" },
+    { "club": "Brothers Union", "p": 18, "w": 4, "d": 5, "l": 9, "gf": 18, "ga": 29, "gd": -11, "pts": 17, "note": "" },
+    { "club": "PWD Sports Club", "p": 18, "w": 4, "d": 5, "l": 9, "gf": 15, "ga": 28, "gd": -13, "pts": 17, "note": "" },
+    { "club": "Arambagh KS", "p": 18, "w": 3, "d": 5, "l": 10, "gf": 12, "ga": 28, "gd": -16, "pts": 14, "note": "R" },
+    { "club": "Fakirerpool YMC", "p": 18, "w": 2, "d": 4, "l": 12, "gf": 13, "ga": 44, "gd": -31, "pts": 10, "note": "R" }
+  ],
+  "matches": [],
+  "clubs": [
+    { "name": "Abahani Limited", "city": "Dhaka", "area": "Dhanmondi" },
+    { "name": "Bangladesh Police", "city": "Dhaka", "area": "Malibagh" },
+    { "name": "Bashundhara Kings", "city": "Dhaka", "area": "Bashundhara" },
+    { "name": "Brothers Union", "city": "Dhaka", "area": "Motijheel" },
+    { "name": "Chattogram City", "city": "Chattogram", "area": "" },
+    { "name": "City Club", "city": "Dhaka", "area": "Mirpur" },
+    { "name": "Fortis FC", "city": "Dhaka", "area": "Badda" },
+    { "name": "Mohammedan SC", "city": "Dhaka", "area": "Motijheel" },
+    { "name": "PWD Sports Club", "city": "Dhaka", "area": "Segunbagicha" },
+    { "name": "Rahmatganj MFS", "city": "Dhaka", "area": "Chowkbazar" }
+  ],
+  "news": [
+    { "title": "Kings finally beat Fortis", "date": "2025-10-20", "source": "The Daily Star", "url": "https://www.thedailystar.net/tags/bangladesh-football-league" },
+    { "title": "Defending champions Mohammedan beaten, Kings held by debutants PWD", "date": "2025-09-27", "source": "The Daily Star", "url": "https://www.thedailystar.net/tags/bangladesh-football-league" },
+    { "title": "Abahani held by 10-man Rahmatganj", "date": "2025-09-25", "source": "The Daily Star", "url": "https://www.thedailystar.net/tags/bangladesh-football-league" }
+  ]
+};
+let DATA=SEED;
+const $=id=>document.getElementById(id);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const SPECIAL={'bashundhara kings':'BK','abahani limited':'AB','fortis fc':'FO','bangladesh police':'BP','mohammedan sc':'MO','rahmatganj mfs':'RM','brothers union':'BU','pwd sports club':'PW','arambagh ks':'AR','fakirerpool ymc':'FY','chattogram city':'CC','city club':'CT'};
+function ab(n){const k=String(n).toLowerCase();if(SPECIAL[k])return SPECIAL[k];const w=String(n).split(/\s+/).filter(Boolean);return (w.length>1?w[0][0]+w[1][0]:String(n).slice(0,2)).toUpperCase()}
+function pad(n){return String(n).padStart(2,'0')}
+function fmtDate(s){const d=new Date(s);return isNaN(d)?'':d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}
+function fmtStamp(s){const d=new Date(s);return isNaN(d)?'':d.toLocaleString('en-GB',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'})}
+function render(){
+  const D=DATA,T=D.table||[],final=D.seasonStatus==='final';
+  $('heroTag').textContent=final&&D.champions?D.champions.toUpperCase()+' · '+D.season+' CHAMPIONS':'THE SUPPORTER\'S GAME';
+  // match area
+  let m='';
+  if((D.matches||[]).length){
+    $('matchEyebrow').textContent='THE LATEST ACTION';$('matchTitle').textContent='Match centre';
+    m=D.matches.slice(0,4).map(x=>`<div class="matchbar"><div class="team"><div class="crest">${esc(ab(x.home))}</div><span>${esc(String(x.home).toUpperCase())}</span></div><div class="score"><strong>${esc(x.hs)} — ${esc(x.as)}</strong><small>${esc(x.status||'FULL TIME')}</small></div><div class="team"><span>${esc(String(x.away).toUpperCase())}</span><div class="crest red">${esc(ab(x.away))}</div></div></div><div class="matchFoot"><span>${esc(x.comp||'')}</span><span>${esc(x.date?fmtDate(x.date):'')}</span></div>`).join('');
+  }else if(T.length>=2){
+    const a=T[0],b=T[1];
+    $('matchEyebrow').textContent=final?'SEASON '+D.season:'AT THE TOP';$('matchTitle').textContent=final?'Final standings, top two':'Current leaders';
+    m=`<div class="matchbar"><div class="team"><div class="crest">${esc(ab(a.club))}</div><span>${esc(a.club.toUpperCase())}</span></div><div class="score"><strong>${esc(a.pts)} — ${esc(b.pts)}</strong><small>${final?'CHAMPIONS ON TOP':'POINTS'}</small></div><div class="team"><span>${esc(b.club.toUpperCase())}</span><div class="crest red">${esc(ab(b.club))}</div></div></div><div class="matchFoot"><span>${esc(a.club)}: ${esc(a.w)}W ${esc(a.d)}D ${esc(a.l)}L, GD ${a.gd>0?'+':''}${esc(a.gd)}</span><span>${D.topScorer&&final?'Top scorer: '+esc(D.topScorer.name)+' ('+esc(D.topScorer.goals)+')':''}</span></div>`;
+  }else{m='<p class="empty">No results listed yet.</p>'}
+  $('matchArea').innerHTML=m;
+  // table
+  $('tblTitle').textContent='Bangladesh Football League · '+(D.season||'');
+  $('tblSub').textContent=final?'FINAL STANDINGS':'LIVE STANDINGS';
+  $('tbody').innerHTML=T.map((r,i)=>`<tr><td class="pos">${pad(i+1)}</td><td><div class="club"><div class="mini">${esc(ab(r.club))}</div>${esc(r.club)}${r.note==='C'?' <span class="badge c">CHAMPIONS</span>':''}${r.note==='R'?' <span class="badge r">RELEGATED</span>':''}</div></td><td>${esc(r.p)}</td><td class="hideMobile">${esc(r.w)}</td><td class="hideMobile">${esc(r.d)}</td><td class="hideMobile">${esc(r.l)}</td><td>${r.gd>0?'+':''}${esc(r.gd)}</td><td class="pts">${esc(r.pts)}</td></tr>`).join('');
+  $('tblNote').textContent=D.statusNote||'';
+  // news
+  const N=D.news||[];
+  $('newsList').innerHTML=N.length?N.slice(0,8).map(n=>`<a class="newsItem" href="${esc(n.url)}" target="_blank" rel="noopener"><b>${esc(n.title)}</b><small>${esc(n.source||'')}${n.date?' · '+esc(fmtDate(n.date)):''}</small></a>`).join(''):'<p class="empty">No headlines yet. They appear after the next automatic update.</p>';
+  $('newsSrc').textContent=N.length?'VIA PUBLIC NEWS FEEDS':'';
+  // clubs
+  const C=D.clubs||[];
+  $('clubGrid').innerHTML=C.map(c=>{const idx=T.findIndex(t=>t.club===c.name),r=idx>=0?T[idx]:null;const where=(c.area?c.area+', ':'')+c.city;
+    return `<div class="card"><div class="cardBody"><div class="eyebrow">${esc(c.city)}</div><h3>${esc(c.name)}</h3><p>${esc(where)}${r?'. Finished '+pad(idx+1)+' in '+esc(D.season)+' with '+esc(r.pts)+' points.':'.'}</p><div class="cardMeta">${r?esc(r.w)+'W '+esc(r.d)+'D '+esc(r.l)+'L · GD '+(r.gd>0?'+':'')+esc(r.gd):'CLUB PROFILE'}</div></div></div>`}).join('');
+  $('clubCount').textContent=C.length+' CLUBS';
+  filterClubs();
+  if(D.source&&D.source.url)$('srcLink').href=D.source.url;
+  $('liveText').textContent=D.updated?'UPDATED '+fmtStamp(D.updated).toUpperCase():'';
+}
+function filterClubs(){const q=$('search').value.toLowerCase();document.querySelectorAll('#clubGrid .card').forEach(c=>{c.hidden=!c.innerText.toLowerCase().includes(q)})}
+async function load(){
+  try{
+    const r=await fetch('data.json?t='+Date.now(),{cache:'no-store'});
+    if(!r.ok)throw new Error(r.status);
+    const j=await r.json();
+    if(j&&Array.isArray(j.table)&&j.table.length)DATA=j;
+    $('liveDot').className='dot';
+  }catch(e){$('liveDot').className='dot off'}
+  render();
+}
+$('search').addEventListener('input',filterClubs);
+function join(){$('joinMsg').hidden=false;$('fanclub').scrollIntoView({behavior:'smooth'})}
+$('joinTop').addEventListener('click',join);$('joinBtn').addEventListener('click',join);
+document.querySelectorAll('.option').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.option').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');try{localStorage.setItem('bfl-poll',b.dataset.i)}catch(e){}$('pollMsg').textContent='Thanks for voting. Your choice stays on this device only.'}));
+try{const v=localStorage.getItem('bfl-poll');if(v!==null){const b=document.querySelector('.option[data-i="'+v+'"]');if(b)b.classList.add('selected')}}catch(e){}
+render();load();
+setInterval(load,5*60*1000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)load()});
+</script>
+</body>
+</html>

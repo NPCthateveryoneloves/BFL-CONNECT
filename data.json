@@ -1,0 +1,42 @@
+{
+  "updated": "2026-11-16T19:00:00Z",
+  "season": "2025–26",
+  "seasonStatus": "final",
+  "statusNote": "The 2025–26 season is complete. The 2026–27 table replaces this one automatically as soon as matches are listed on the source page.",
+  "source": {
+    "name": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/2025%E2%80%9326_Bangladesh_Football_League"
+  },
+  "champions": "Bashundhara Kings",
+  "topScorer": { "name": "Dorielton", "club": "Bashundhara Kings", "goals": 20 },
+  "table": [
+    { "club": "Bashundhara Kings", "p": 18, "w": 12, "d": 5, "l": 1, "gf": 42, "ga": 18, "gd": 24, "pts": 41, "note": "C" },
+    { "club": "Abahani Limited", "p": 18, "w": 11, "d": 4, "l": 3, "gf": 37, "ga": 15, "gd": 22, "pts": 37, "note": "" },
+    { "club": "Fortis FC", "p": 18, "w": 10, "d": 5, "l": 3, "gf": 31, "ga": 13, "gd": 18, "pts": 35, "note": "" },
+    { "club": "Bangladesh Police", "p": 18, "w": 6, "d": 9, "l": 3, "gf": 19, "ga": 15, "gd": 4, "pts": 27, "note": "" },
+    { "club": "Mohammedan SC", "p": 18, "w": 6, "d": 5, "l": 7, "gf": 27, "ga": 20, "gd": 7, "pts": 23, "note": "" },
+    { "club": "Rahmatganj MFS", "p": 18, "w": 6, "d": 5, "l": 7, "gf": 21, "ga": 25, "gd": -4, "pts": 23, "note": "" },
+    { "club": "Brothers Union", "p": 18, "w": 4, "d": 5, "l": 9, "gf": 18, "ga": 29, "gd": -11, "pts": 17, "note": "" },
+    { "club": "PWD Sports Club", "p": 18, "w": 4, "d": 5, "l": 9, "gf": 15, "ga": 28, "gd": -13, "pts": 17, "note": "" },
+    { "club": "Arambagh KS", "p": 18, "w": 3, "d": 5, "l": 10, "gf": 12, "ga": 28, "gd": -16, "pts": 14, "note": "R" },
+    { "club": "Fakirerpool YMC", "p": 18, "w": 2, "d": 4, "l": 12, "gf": 13, "ga": 44, "gd": -31, "pts": 10, "note": "R" }
+  ],
+  "matches": [],
+  "clubs": [
+    { "name": "Abahani Limited", "city": "Dhaka", "area": "Dhanmondi" },
+    { "name": "Bangladesh Police", "city": "Dhaka", "area": "Malibagh" },
+    { "name": "Bashundhara Kings", "city": "Dhaka", "area": "Bashundhara" },
+    { "name": "Brothers Union", "city": "Dhaka", "area": "Motijheel" },
+    { "name": "Chattogram City", "city": "Chattogram", "area": "" },
+    { "name": "City Club", "city": "Dhaka", "area": "Mirpur" },
+    { "name": "Fortis FC", "city": "Dhaka", "area": "Badda" },
+    { "name": "Mohammedan SC", "city": "Dhaka", "area": "Motijheel" },
+    { "name": "PWD Sports Club", "city": "Dhaka", "area": "Segunbagicha" },
+    { "name": "Rahmatganj MFS", "city": "Dhaka", "area": "Chowkbazar" }
+  ],
+  "news": [
+    { "title": "Kings finally beat Fortis", "date": "2025-10-20", "source": "The Daily Star", "url": "https://www.thedailystar.net/tags/bangladesh-football-league" },
+    { "title": "Defending champions Mohammedan beaten, Kings held by debutants PWD", "date": "2025-09-27", "source": "The Daily Star", "url": "https://www.thedailystar.net/tags/bangladesh-football-league" },
+    { "title": "Abahani held by 10-man Rahmatganj", "date": "2025-09-25", "source": "The Daily Star", "url": "https://www.thedailystar.net/tags/bangladesh-football-league" }
+  ]
+}
